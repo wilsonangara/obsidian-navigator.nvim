@@ -1,4 +1,5 @@
 local config = require("obsidian-navigator.config")
+local utils = require("obsidian-navigator.utils")
 
 local M = {}
 
@@ -7,17 +8,9 @@ vim.api.nvim_create_augroup("obsidian-navigator.nvim", { clear = true })
 -- Initialize the plugin configuration.
 local function init()
 	-- Checks whether the current working directory, if yes turn on the plugin.
-	local cwd = vim.fn.getcwd()
-	local inside_directory = false
-	for _, path in ipairs(config.config.obsidian_vaults) do
-		-- Compare path to directory
-		if path == cwd:sub(1, #path + 1) then
-			config.on = true
-			inside_directory = true
-			break
-		end
-	end
-	if not inside_directory then
+	if utils.is_inside_vault() then
+		config.on = true
+	else
 		config.on = false
 		return
 	end
