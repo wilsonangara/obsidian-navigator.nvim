@@ -1,5 +1,6 @@
 local config = require("obsidian-navigator.config")
 local utils = require("obsidian-navigator.utils")
+local commands = require("obsidian-navigator.commands")
 
 local M = {}
 
@@ -14,6 +15,9 @@ local function init()
 		config.on = false
 		return
 	end
+
+	-- Register commands to Neovim
+	commands.register()
 end
 
 function M.setup(user_config)
