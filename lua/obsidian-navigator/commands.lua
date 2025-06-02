@@ -1,5 +1,6 @@
 local config = require("obsidian-navigator.config")
 local utils = require("obsidian-navigator.utils")
+local handlers = require("obsidian-navigator.handlers")
 
 local M = {}
 
@@ -19,6 +20,10 @@ function On()
 	end
 
 	config.on = true
+
+	-- Checks whether current buffer is inside a vault and is opening a file,
+	-- should directly open the file.
+	handlers.open_file()
 end
 
 -- Function to disable the plugin
