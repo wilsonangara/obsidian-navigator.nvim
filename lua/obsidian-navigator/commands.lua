@@ -3,14 +3,6 @@ local utils = require("obsidian-navigator.utils")
 
 local M = {}
 
--- Helper function to execute a command when plugin is enabled, and do nothing
--- when disabled.
-local function exec_cmd(fn)
-	if config.on then
-		fn()
-	end
-end
-
 -- Function to enable the plugin, although there are some pre-requisites:
 --  - Buffer in the current working directory should be inside one of the
 --    vaults registered.
