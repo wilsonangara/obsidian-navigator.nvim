@@ -44,6 +44,7 @@ end
 
 -- ================================= CURSOR ==================================
 
+-- Syncs the cursor position with the Obsidian app preview.
 M.scroll_into_view = function(line)
 	network.post("/editor/scroll-into-view", { line = line })
 end
