@@ -32,4 +32,14 @@ M.open_today_daily_note = function()
 	network.post("/daily-notes/today", {})
 end
 
+-- Opens the next daily note.
+M.open_next_daily_note = function()
+	network.post("/daily-notes/next", {})
+end
+
+-- Opens the previous daily note.
+M.open_prev_daily_note = function()
+	network.post("/daily-notes/prev", {})
+end
+
 return M

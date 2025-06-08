@@ -37,6 +37,8 @@ M.register = function()
         command! ObsidianNavigatorOn lua On()
         command! ObsidianNavigatorOff lua Off()
         command! ObsidianNavigatorToday lua require("obsidian-navigator.handlers").open_today_daily_note()
+        command! ObsidianNavigatorDailyNoteNext lua require("obsidian-navigator.handlers").open_next_daily_note()
+        command! ObsidianNavigatorDailyNotePrev lua require("obsidian-navigator.handlers").open_prev_daily_note()
     ]])
 end
 
