@@ -36,6 +36,7 @@ M.register = function()
 	vim.cmd([[
         command! ObsidianNavigatorOn lua On()
         command! ObsidianNavigatorOff lua Off()
+        command! ObsidianNavigatorToday lua require("obsidian-navigator.handlers").open_today_daily_note()
     ]])
 end
 

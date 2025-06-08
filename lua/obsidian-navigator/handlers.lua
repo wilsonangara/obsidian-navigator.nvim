@@ -25,4 +25,11 @@ M.on_buf_enter = function()
 	exec_cmd(M.open_file)
 end
 
+-- =============================== DAILY NOTES ===============================
+
+-- Opens today's daily note.
+M.open_today_daily_note = function()
+	network.post("/daily-notes/today", {})
+end
+
 return M
