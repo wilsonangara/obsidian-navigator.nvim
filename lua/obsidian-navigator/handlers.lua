@@ -45,7 +45,34 @@ end
 -- ================================= CURSOR ==================================
 
 M.scroll_into_view = function(line)
-    network.post("/editor/scroll-into-view", { line = line })
+	network.post("/editor/scroll-into-view", { line = line })
+end
+
+-- ================================== TABS ===================================
+
+-- Opens the next tab in the workspace.
+M.new_tab = function()
+	network.post("/workspace/tabs/new", {})
+end
+
+-- Moves to the next tab (right) in the workspace if there is one.
+M.next_tab = function()
+	network.post("/workspace/tabs/next", {})
+end
+
+-- Moves to the previous tab (left) in the workspace if there is one.
+M.prev_tab = function()
+	network.post("/workspace/tabs/prev", {})
+end
+
+-- Closes the current tab in the workspace.
+M.close_tab = function()
+	network.post("/workspace/tabs/close", {})
+end
+
+-- Closes all tabs in the workspace except the current one.
+M.close_other_tabs = function()
+	network.post("/workspace/tabs/close-others", {})
 end
 
 return M
