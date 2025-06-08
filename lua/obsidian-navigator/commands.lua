@@ -71,6 +71,12 @@ M.register = function()
         command! ObsidianNavigatorCloseOtherTabs lua require("obsidian-navigator.handlers").close_other_tabs()
         command! ObsNavCloseOtherTabs lua require("obsidian-navigator.handlers").close_other_tabs()
     ]])
+
+	-- Editor commands
+	vim.cmd([[
+        command! ObsidianNavigatorOpenLink lua require("obsidian-navigator.handlers").open_link()
+        command! ObsNavOpenLink lua require("obsidian-navigator.handlers").open_link()
+    ]])
 end
 
 return M
