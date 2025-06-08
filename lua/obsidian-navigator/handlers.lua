@@ -42,4 +42,10 @@ M.open_prev_daily_note = function()
 	network.post("/daily-notes/prev", {})
 end
 
+-- ================================= CURSOR ==================================
+
+M.scroll_into_view = function(line)
+    network.post("/editor/scroll-into-view", { line = line })
+end
+
 return M

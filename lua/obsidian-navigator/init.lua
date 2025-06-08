@@ -29,6 +29,17 @@ function M.setup(user_config)
 		pattern = "*",
 		group = "obsidian-navigator.nvim",
 	})
+
+	-- Creates a single timer specific for debouncing the scroll into view
+	local debounce_scroll = utils.debounce(handlers.scroll_into_view, 400)
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		callback = function()
+			local line = vim.api.nvim_win_get_cursor(0)[1]
+			debounce_scroll(line)
+		end,
+		pattern = "*.md",
+		group = "obsidian-navigator.nvim",
+	})
 end
 
 return M

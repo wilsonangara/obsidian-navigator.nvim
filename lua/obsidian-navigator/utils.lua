@@ -15,4 +15,20 @@ M.is_inside_vault = function()
 	return false
 end
 
+-- Perform function based on debounce time.
+M.debounce = function(fn, delay_ms)
+	local timer = vim.loop.new_timer()
+
+	return function(...)
+		local args = { ... }
+
+		timer:stop()
+		timer:start(delay_ms, 0, function()
+			vim.schedule(function()
+				fn(unpack(args))
+			end)
+		end)
+	end
+end
+
 return M
