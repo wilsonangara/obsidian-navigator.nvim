@@ -45,7 +45,7 @@ M.register = function()
 	-- Daily Notes commands
 	vim.cmd([[
         command! ObsidianNavigatorTodayDailyNote lua require("obsidian-navigator.handlers").open_today_daily_note()
-        command! ObsNavDailyNoteToday lua require("obsidian-navigator.handlers").open_today_daily_note()
+        command! ObsNavTodayDailyNote lua require("obsidian-navigator.handlers").open_today_daily_note()
 
         command! ObsidianNavigatorNextDailyNote lua require("obsidian-navigator.handlers").open_next_daily_note()
         command! ObsNavNextDailyNote lua require("obsidian-navigator.handlers").open_next_daily_note()
