@@ -70,6 +70,9 @@ M.register = function()
 
         command! ObsidianNavigatorCloseOtherTabs lua require("obsidian-navigator.handlers").close_other_tabs()
         command! ObsNavCloseOtherTabs lua require("obsidian-navigator.handlers").close_other_tabs()
+
+        command! ObsidianNavigatorOpenGraph lua require("obsidian-navigator.handlers").open_graph()
+        command! ObsNavOpenGraph lua require("obsidian-navigator.handlers").open_graph()
     ]])
 
 	-- Editor commands

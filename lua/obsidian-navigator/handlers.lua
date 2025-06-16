@@ -11,6 +11,13 @@ local function exec_cmd(fn)
 	end
 end
 
+-- Run any handlers that should be executed when the plugin is enabled.
+M.on_buf_enter = function()
+	exec_cmd(M.open_file)
+end
+
+-- ================================ WORKSPACE ================================
+
 -- Opens a file where the obsidian vault buffer is opened from.
 M.open_file = function()
 	-- Get file from the current buffer
@@ -20,9 +27,10 @@ M.open_file = function()
 	end
 end
 
--- Run any handlers that should be executed when the plugin is enabled.
-M.on_buf_enter = function()
-	exec_cmd(M.open_file)
+M.open_graph = function()
+	exec_cmd(function()
+		network.post("/workspace/graph", {})
+	end)
 end
 
 -- =============================== DAILY NOTES ===============================
