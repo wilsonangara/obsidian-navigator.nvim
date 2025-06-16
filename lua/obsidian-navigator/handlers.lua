@@ -1,7 +1,10 @@
 local config = require("obsidian-navigator.config")
 local network = require("obsidian-navigator.network")
+local utils = require("obsidian-navigator.utils")
 
 local M = {}
+
+local scroll_sync_group = "obsidian-navigator-scroll-sync"
 
 -- Helper function to execute a command when plugin is enabled, and do nothing
 -- when disabled.
@@ -57,6 +60,32 @@ M.open_prev_daily_note = function()
 end
 
 -- ================================= CURSOR ==================================
+
+-- Enables scroll sync between the Obsidian app and Neovim by registering
+-- autocmd to sync the cursor position.
+M.enable_scroll_sync = function()
+	-- Remove any existing autocmds in the group to avoid duplicates.
+	vim.api.nvim_create_augroup(scroll_sync_group, { clear = true })
+
+	-- Creates a single timer specific for debouncing the scroll into view
+	local debounce_scroll = utils.debounce(M.scroll_into_view, 400)
+
+	-- Register an autocmd that triggers on CursorMoved in markdown files.
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		callback = function()
+			local line = vim.api.nvim_win_get_cursor(0)[1]
+			debounce_scroll(line)
+		end,
+		pattern = "*.md",
+		group = scroll_sync_group,
+	})
+end
+
+-- Disables scroll sync between the Obsidian app and Neovim by unregistering
+-- autocmd.
+M.disable_scroll_sync = function()
+	vim.api.nvim_clear_autocmds({ group = scroll_sync_group })
+end
 
 -- Syncs the cursor position with the Obsidian app preview.
 M.scroll_into_view = function(line)

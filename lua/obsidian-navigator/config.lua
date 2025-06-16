@@ -11,6 +11,7 @@ M.setup_config = function(user_config)
 	local default_config = {
 		obsidial_base_url = "http://localhost:27124",
 		obsidian_vaults = user_config.vaults or {},
+		obsidian_scroll_sync = user_config.scroll_sync or false,
 	}
 	M.config = default_config
 end

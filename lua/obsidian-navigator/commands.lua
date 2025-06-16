@@ -79,6 +79,12 @@ M.register = function()
 	vim.cmd([[
         command! ObsidianNavigatorOpenLink lua require("obsidian-navigator.handlers").open_link()
         command! ObsNavOpenLink lua require("obsidian-navigator.handlers").open_link()
+
+        command! ObsidianNavigatorEnableScrollSync lua require("obsidian-navigator.handlers").enable_scroll_sync()
+        command! ObsNavEnableScrollSync lua require("obsidian-navigator.handlers").enable_scroll_sync()
+
+        command! ObsidianNavigatorDisableScrollSync lua require("obsidian-navigator.handlers").disable_scroll_sync()
+        command! ObsNavDisableScrollSync lua require("obsidian-navigator.handlers").disable_scroll_sync()
     ]])
 end
 
