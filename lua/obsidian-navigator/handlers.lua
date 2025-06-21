@@ -41,21 +41,30 @@ end
 -- Opens today's daily note.
 M.open_today_daily_note = function()
 	exec_cmd(function()
-		network.post("/daily-notes/today", {})
+		local res = network.post("/daily-notes/today", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
 	end)
 end
 
 -- Opens the next daily note.
 M.open_next_daily_note = function()
 	exec_cmd(function()
-		network.post("/daily-notes/next", {})
+		local res = network.post("/daily-notes/next", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
 	end)
 end
 
 -- Opens the previous daily note.
 M.open_prev_daily_note = function()
 	exec_cmd(function()
-		network.post("/daily-notes/prev", {})
+		local res = network.post("/daily-notes/prev", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
 	end)
 end
 
@@ -99,11 +108,11 @@ end
 M.open_link = function()
 	exec_cmd(function()
 		local cursor = vim.api.nvim_win_get_cursor(0)
-		local line = cursor[1]
+		local line = cursor[1] - 1 -- Obsidian's front matter starts at 0
 		local col = cursor[2]
 
 		local res = network.post("/editor/open-link", { line = line, ch = col })
-		if res ~= nil then
+		if res ~= nil and res.filepath ~= nil then
 			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
 		end
 	end)
@@ -121,21 +130,30 @@ end
 -- Moves to the next tab (right) in the workspace if there is one.
 M.next_tab = function()
 	exec_cmd(function()
-		network.post("/workspace/tabs/next", {})
+		local res = network.post("/workspace/tabs/next", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
 	end)
 end
 
 -- Moves to the previous tab (left) in the workspace if there is one.
 M.prev_tab = function()
 	exec_cmd(function()
-		network.post("/workspace/tabs/prev", {})
+		local res = network.post("/workspace/tabs/prev", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
 	end)
 end
 
 -- Closes the current tab in the workspace.
 M.close_tab = function()
 	exec_cmd(function()
-		network.post("/workspace/tabs/close", {})
+		local res = network.post("/workspace/tabs/close", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
 	end)
 end
 
