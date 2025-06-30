@@ -77,8 +77,8 @@ M.register = function()
 
 	-- Editor commands
 	vim.cmd([[
-        command! ObsidianNavigatorOpenLink lua require("obsidian-navigator.handlers").open_link()
-        command! ObsNavOpenLink lua require("obsidian-navigator.handlers").open_link()
+        command! -nargs=? ObsidianNavigatorOpenLink lua require("obsidian-navigator.handlers").open_link(<f-args>)
+        command! -nargs=? ObsNavOpenLink lua require("obsidian-navigator.handlers").open_link(<f-args>)
 
         command! ObsidianNavigatorEnableScrollSync lua require("obsidian-navigator.handlers").enable_scroll_sync()
         command! ObsNavEnableScrollSync lua require("obsidian-navigator.handlers").enable_scroll_sync()

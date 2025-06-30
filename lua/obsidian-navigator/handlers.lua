@@ -105,13 +105,20 @@ end
 
 -- Opens link under the cursor in the Obsidian app, and if the file exists,
 -- opens it in the current Neovim buffer.
-M.open_link = function()
+M.open_link = function(arg)
 	exec_cmd(function()
 		local cursor = vim.api.nvim_win_get_cursor(0)
 		local line = cursor[1] - 1 -- Obsidian's front matter starts at 0
 		local col = cursor[2]
 
-		local res = network.post("/editor/open-link", { line = line, ch = col })
+		local payload = { line = line, ch = col }
+		if arg == "leaf" then
+			payload.newLeaf = true
+		elseif arg == "window" then
+			payload.newWindow = true
+		end
+
+		local res = network.post("/editor/open-link", payload)
 		if res ~= nil and res.filepath ~= nil then
 			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
 		end
