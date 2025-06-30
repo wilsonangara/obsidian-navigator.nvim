@@ -85,6 +85,12 @@ M.register = function()
 
         command! ObsidianNavigatorDisableScrollSync lua require("obsidian-navigator.handlers").disable_scroll_sync()
         command! ObsNavDisableScrollSync lua require("obsidian-navigator.handlers").disable_scroll_sync()
+
+        command! ObsidianNavigatorForward lua require("obsidian-navigator.handlers").navigate_forward()
+        command! ObsNavForward lua require("obsidian-navigator.handlers").navigate_forward()
+
+        command! ObsidianNavigatorBack lua require("obsidian-navigator.handlers").navigate_back()
+        command! ObsNavBack lua require("obsidian-navigator.handlers").navigate_back()
     ]])
 end
 

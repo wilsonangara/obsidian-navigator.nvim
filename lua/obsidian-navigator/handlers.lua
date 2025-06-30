@@ -36,6 +36,25 @@ M.open_graph = function()
 	end)
 end
 
+M.navigate_back = function()
+	exec_cmd(function()
+		print("Masuk sini")
+		local res = network.post("/app/navigate-back", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
+	end)
+end
+
+M.navigate_forward = function()
+	exec_cmd(function()
+		local res = network.post("/app/navigate-forward", {})
+		if res ~= nil and res.filepath ~= nil then
+			vim.cmd("edit " .. vim.fn.fnameescape(res.filepath))
+		end
+	end)
+end
+
 -- =============================== DAILY NOTES ===============================
 
 -- Opens today's daily note.
